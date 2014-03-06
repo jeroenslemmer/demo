@@ -10,7 +10,27 @@ namespace demo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Helloe World");
+            const ConsoleKey ExitKey = ConsoleKey.Q;
+            ConsoleKeyInfo input;
+            do
+            {
+                input = Console.ReadKey();
+                if (input.Key != ExitKey)
+                {
+                    switch (input.Key)
+                    {
+                        case ConsoleKey.RightArrow:
+                            Console.WriteLine("right");
+                            break;
+
+
+
+                    }
+
+                }
+
+
+            } while (input.Key != ExitKey);
         }
     }
 }
