@@ -11,6 +11,8 @@ namespace Demo
         static void Main(string[] args)
         {
             const ConsoleKey exitKey = ConsoleKey.Q;
+
+            Console.CursorVisible = false;
             ConsoleKeyInfo input;
             Rectangle selectedRectangle;
             List<Rectangle> rectangles = new List<Rectangle>();
@@ -25,7 +27,17 @@ namespace Demo
                 {
                     switch (input.Key)
                     {
-
+                        case ConsoleKey.Tab:
+                            int index = rectangles.IndexOf(selectedRectangle) + 1;
+                            if (index < rectangles.Count)
+                            {
+                                selectedRectangle = rectangles[index];
+                            }
+                            else
+                            {
+                                selectedRectangle = rectangles[0];
+                            }
+                            break;
                         case ConsoleKey.Spacebar:
                             rectangles.Add(new Rectangle());
                             selectedRectangle = rectangles[rectangles.Count - 1];
