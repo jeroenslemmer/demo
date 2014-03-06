@@ -25,6 +25,11 @@ namespace Demo
                 {
                     switch (input.Key)
                     {
+
+                        case ConsoleKey.Spacebar:
+                            rectangles.Add(new Rectangle());
+                            selectedRectangle = rectangles[rectangles.Count - 1];
+                            break;
                         case ConsoleKey.RightArrow:
                             if (input.Modifiers == ConsoleModifiers.Control)
                             {
