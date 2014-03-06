@@ -11,6 +11,7 @@ namespace Demo
         static void Main(string[] args)
         {
             const ConsoleKey exitKey = ConsoleKey.Q;
+            int index;
             Console.CursorVisible = false;
             ConsoleKeyInfo input;
             Rectangle selectedRectangle;
@@ -27,29 +28,31 @@ namespace Demo
                     switch (input.Key)
                     {
                         case ConsoleKey.Tab:
-                            if (input.Modifiers == ConsoleModifiers.Shift)
+                            if (selectedRectangle != null)
                             {
-                                int index = rectangles.IndexOf(selectedRectangle) - 1 ;
-                                if (index >= 0)
+                                if (input.Modifiers == ConsoleModifiers.Shift)
                                 {
-                                    selectedRectangle = rectangles[index];
+                                    index = rectangles.IndexOf(selectedRectangle) - 1;
+                                    if (index >= 0)
+                                    {
+                                        selectedRectangle = rectangles[index];
+                                    }
+                                    else
+                                    {
+                                        selectedRectangle = rectangles[rectangles.Count - 1];
+                                    }
                                 }
                                 else
                                 {
-                                    selectedRectangle = rectangles[rectangles.Count - 1];
-                                }
-                            }
-                            else
-                            {
-
-                                int index = rectangles.IndexOf(selectedRectangle) + 1;
-                                if (index < rectangles.Count)
-                                {
-                                    selectedRectangle = rectangles[index];
-                                }
-                                else
-                                {
-                                    selectedRectangle = rectangles[0];
+                                    index = rectangles.IndexOf(selectedRectangle) + 1;
+                                    if (index < rectangles.Count)
+                                    {
+                                        selectedRectangle = rectangles[index];
+                                    }
+                                    else
+                                    {
+                                        selectedRectangle = rectangles[0];
+                                    }
                                 }
                             }
                             break;
@@ -57,44 +60,79 @@ namespace Demo
                             rectangles.Add(new Rectangle());
                             selectedRectangle = rectangles[rectangles.Count - 1];
                             break;
-                        case ConsoleKey.RightArrow:
-                            if (input.Modifiers == ConsoleModifiers.Control)
+                        case ConsoleKey.Delete:
+                            if (selectedRectangle != null)
                             {
-                                selectedRectangle.GrowWidth();
+                                index = rectangles.IndexOf(selectedRectangle);
+                                rectangles.Remove(selectedRectangle);
+                                if (index < rectangles.Count)
+                                {
+                                    selectedRectangle = rectangles[index];
+                                }
+                                else
+                                {
+                                    index--;
+                                    if (index >= 0)
+                                    {
+                                        selectedRectangle = rectangles[index];
+                                    }
+                                    else
+                                    {
+                                        selectedRectangle = null;
+                                    }
+                                }
                             }
-                            else
+                            break;
+                        case ConsoleKey.RightArrow:
+                            if (selectedRectangle != null)
                             {
-                                selectedRectangle.MoveRight();
+                                if (input.Modifiers == ConsoleModifiers.Control)
+                                {
+                                    selectedRectangle.GrowWidth();
+                                }
+                                else
+                                {
+                                    selectedRectangle.MoveRight();
+                                }
                             }
                             break;
                         case ConsoleKey.LeftArrow:
-                            if (input.Modifiers == ConsoleModifiers.Control)
+                            if (selectedRectangle != null)
                             {
-                                selectedRectangle.ShrinkWidth();
-                            }
-                            else
-                            {
-                                selectedRectangle.MoveLeft();
+                                if (input.Modifiers == ConsoleModifiers.Control)
+                                {
+                                    selectedRectangle.ShrinkWidth();
+                                }
+                                else
+                                {
+                                    selectedRectangle.MoveLeft();
+                                }
                             }
                             break;
                         case ConsoleKey.DownArrow:
-                            if (input.Modifiers == ConsoleModifiers.Control)
+                            if (selectedRectangle != null)
                             {
-                                selectedRectangle.GrowHeight();
-                            }
-                            else
-                            {
-                                selectedRectangle.MoveDown();
+                                if (input.Modifiers == ConsoleModifiers.Control)
+                                {
+                                    selectedRectangle.GrowHeight();
+                                }
+                                else
+                                {
+                                    selectedRectangle.MoveDown();
+                                }
                             }
                             break;
                         case ConsoleKey.UpArrow:
-                            if (input.Modifiers == ConsoleModifiers.Control)
+                            if (selectedRectangle != null)
                             {
-                                selectedRectangle.ShrinkHeight();
-                            }
-                            else
-                            {
-                                selectedRectangle.MoveUp();
+                                if (input.Modifiers == ConsoleModifiers.Control)
+                                {
+                                    selectedRectangle.ShrinkHeight();
+                                }
+                                else
+                                {
+                                    selectedRectangle.MoveUp();
+                                }
                             }
                             break;
                     }

@@ -83,6 +83,8 @@ namespace Demo
                 Height = 2;
             }
         }
+
+
         private void DisplayHorizontalBorderLine()
         {
             for (int c = 1; c <= Width - 2; c++) // R
