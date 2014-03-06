@@ -4,48 +4,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace demo
+namespace Demo
 {
     class Program
     {
         static void Main(string[] args)
         {
-            const ConsoleKey ExitKey = ConsoleKey.Q;
+            const ConsoleKey exitKey = ConsoleKey.Q;
             ConsoleKeyInfo input;
-            Square square = new Square(1);
+            Rectangle selectedRectangle;
+            List<Rectangle> rectangles = new List<Rectangle>();
+            rectangles.Add(new Rectangle());
+            selectedRectangle = rectangles[0];
             do
             {
                 Console.Clear();
-                square.Display();
+                DisplayRectangles(rectangles);
                 input = Console.ReadKey();
-                if (input.Key != ExitKey)
+                if (input.Key != exitKey)
                 {
                     switch (input.Key)
                     {
                         case ConsoleKey.RightArrow:
                             if (input.Modifiers == ConsoleModifiers.Control)
                             {
-                                square.GrowWidth();
+                                selectedRectangle.GrowWidth();
                             }
                             else
                             {
-                                square.MoveRight();
+                                selectedRectangle.MoveRight();
                             }
                             break;
                         case ConsoleKey.LeftArrow:
-                            square.MoveLeft();
+                            selectedRectangle.MoveLeft();
                             break;
                         case ConsoleKey.DownArrow:
-                            square.MoveDown();
+                            selectedRectangle.MoveDown();
                             break;
                         case ConsoleKey.UpArrow:
-                            square.MoveUp();
+                            selectedRectangle.MoveUp();
                             break;
                     }
                 }
 
 
-            } while (input.Key != ExitKey);
+            } while (input.Key != exitKey);
+        }
+        public static void DisplayRectangles(List<Rectangle> rectangles)
+        {
+            foreach(var rectangle in rectangles)
+            {
+                rectangle.Display();
+            }
+
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace demo
+namespace Demo
 {
-    class Square
+    class Rectangle
     {
         public int Id { get; set; }
         public int HorizontalPos { get; set; }
@@ -15,9 +15,8 @@ namespace demo
         public int Height { get; set; }
         public ConsoleColor Color { get; set; }
 
-        public Square(int id)
+        public Rectangle()
         {
-            Id = id;
             HorizontalPos = 0;
             VerticalPos = 0;
             Width = 2;
@@ -31,7 +30,6 @@ namespace demo
                 Console.Write('─');
             }
         }
-
 
         private void DisplayTopBorder()
         {
