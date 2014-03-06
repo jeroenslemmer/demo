@@ -27,6 +27,32 @@ namespace Demo
                 {
                     switch (input.Key)
                     {
+                        case ConsoleKey.PageUp:
+                            if (selectedRectangle != null)
+                            {
+                                index = rectangles.IndexOf(selectedRectangle);
+                                index++;
+                                if (index > rectangles.Count - 1)
+                                {
+                                    index = 0;
+                                }
+                                rectangles.Remove(selectedRectangle);
+                                rectangles.Insert(index, selectedRectangle);
+                            }
+                            break;
+                        case ConsoleKey.PageDown:
+                            if (selectedRectangle != null)
+                            {
+                                index = rectangles.IndexOf(selectedRectangle);
+                                index--;
+                                if (index < 0)
+                                {
+                                    index = rectangles.Count - 1;
+                                }
+                                rectangles.Remove(selectedRectangle);
+                                rectangles.Insert(index, selectedRectangle);
+                            }
+                            break;
                         case ConsoleKey.Tab:
                             if (selectedRectangle != null)
                             {
