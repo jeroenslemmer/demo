@@ -23,10 +23,9 @@ namespace Demo
             Height = 2;
         }
 
-
         public void MoveRight()
         {
-              if (HorizontalPos < Console.BufferWidth-1)
+              if (HorizontalPos + Width < Console.BufferWidth)
               {
                   HorizontalPos++;
               }
@@ -42,7 +41,7 @@ namespace Demo
 
         public void MoveDown()
         {
-            if (VerticalPos < Console.BufferHeight - 1)
+            if (VerticalPos + Height < Console.WindowHeight)
             {
                 VerticalPos++;
             }
@@ -58,12 +57,18 @@ namespace Demo
 
         public void GrowWidth()
         {
-            Width++;
+            if (HorizontalPos + Width < Console.BufferWidth)
+            {
+                Width++;
+            }
         }
 
         public void GrowHeight()
         {
-            Height++;
+            if (VerticalPos + Height < Console.WindowHeight)
+            {
+                Height++;
+            }
         }
 
         public void ShrinkWidth()
@@ -84,7 +89,6 @@ namespace Demo
             }
         }
 
-
         private void DisplayHorizontalBorderLine()
         {
             for (int c = 1; c <= Width - 2; c++) // R
@@ -96,12 +100,12 @@ namespace Demo
         private void DisplayVerticalBorderLine()
         {
             int left = Console.CursorLeft; // to restore cursorposition left
-            
+            int top = Console.CursorTop;
             for (int c = 0; c < Height - 2; c++) // R
             {
-                Console.Write('│');
                 Console.CursorLeft = left;
-                Console.CursorTop++;
+                Console.CursorTop = top + c;
+                Console.Write('│');
             }
         }
 

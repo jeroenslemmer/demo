@@ -141,6 +141,7 @@ namespace Demo
 
             } while (input.Key != exitKey);
         }
+
         public static void DisplayRectangles(List<Rectangle> rectangles, Rectangle selectedRectangle)
         {
             foreach(var rectangle in rectangles)
