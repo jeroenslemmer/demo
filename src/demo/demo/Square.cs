@@ -24,15 +24,26 @@ namespace demo
             Height = 2;
         }
 
+        private void DisplayTopBorderLine()
+        {
+            for (int c = 1; c <= Width - 2; c++)
+            {
+                Console.Write('─');
+            }
+        }
+
+
         private void DisplayTopBorder()
         {
             Console.Write('┌');
+            DisplayTopBorderLine();
             Console.Write('┐');
         }
 
         private void DisplayBottomBorder()
         {
             Console.Write('└');
+            DisplayTopBorderLine();
             Console.Write('┘');
         }
 
@@ -52,6 +63,26 @@ namespace demo
             }
         }
 
+        public void MoveDown()
+        {
+            if (VerticalPos < Console.BufferHeight - 1)
+            {
+                VerticalPos++;
+            }
+        }
+
+        public void MoveUp()
+        {
+            if (VerticalPos > 0)
+            {
+                VerticalPos--;
+            }
+        }
+
+        public void GrowWidth()
+        {
+            Width++;
+        }
 
         public void Display()
         {

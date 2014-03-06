@@ -23,7 +23,14 @@ namespace demo
                     switch (input.Key)
                     {
                         case ConsoleKey.RightArrow:
-                            square.MoveRight();
+                            if (input.Modifiers == ConsoleModifiers.Control)
+                            {
+                                square.GrowWidth();
+                            }
+                            else
+                            {
+                                square.MoveRight();
+                            }
                             break;
                         case ConsoleKey.LeftArrow:
                             square.MoveLeft();
