@@ -23,13 +23,18 @@ namespace demo
                     switch (input.Key)
                     {
                         case ConsoleKey.RightArrow:
-                            square.HorizontalPos++;
+                            square.MoveRight();
                             break;
-
-
-
+                        case ConsoleKey.LeftArrow:
+                            square.MoveLeft();
+                            break;
+                        case ConsoleKey.DownArrow:
+                            square.MoveDown();
+                            break;
+                        case ConsoleKey.UpArrow:
+                            square.MoveUp();
+                            break;
                     }
-
                 }
 
 

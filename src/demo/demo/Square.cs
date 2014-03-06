@@ -36,6 +36,22 @@ namespace demo
             Console.Write('┘');
         }
 
+        public void MoveRight()
+        {
+              if (HorizontalPos < Console.BufferWidth-1)
+              {
+                  HorizontalPos++;
+              }
+        }
+
+        public void MoveLeft()
+        {
+            if (HorizontalPos > 0)
+            {
+                HorizontalPos--;
+            }
+        }
+
 
         public void Display()
         {
