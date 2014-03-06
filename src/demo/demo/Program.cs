@@ -12,8 +12,10 @@ namespace demo
         {
             const ConsoleKey ExitKey = ConsoleKey.Q;
             ConsoleKeyInfo input;
+            Square square = new Square();
             do
             {
+                square.Display();
                 input = Console.ReadKey();
                 if (input.Key != ExitKey)
                 {
