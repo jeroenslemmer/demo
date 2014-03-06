@@ -23,27 +23,6 @@ namespace Demo
             Height = 2;
         }
 
-        private void DisplayTopBorderLine()
-        {
-            for (int c = 1; c <= Width - 2; c++)
-            {
-                Console.Write('─');
-            }
-        }
-
-        private void DisplayTopBorder()
-        {
-            Console.Write('┌');
-            DisplayTopBorderLine();
-            Console.Write('┐');
-        }
-
-        private void DisplayBottomBorder()
-        {
-            Console.Write('└');
-            DisplayTopBorderLine();
-            Console.Write('┘');
-        }
 
         public void MoveRight()
         {
@@ -82,11 +61,75 @@ namespace Demo
             Width++;
         }
 
+        public void GrowHeight()
+        {
+            Height++;
+        }
+
+        public void ShrinkWidth()
+        {
+            Width--;
+            if (Width < 2)
+            {
+                Width = 2;
+            }
+        }
+
+        public void ShrinkHeight()
+        {
+            Height--;
+            if (Height < 2)
+            {
+                Height = 2;
+            }
+        }
+        private void DisplayHorizontalBorderLine()
+        {
+            for (int c = 1; c <= Width - 2; c++) // R
+            {
+                Console.Write('─');
+            }
+        }
+
+        private void DisplayVerticalBorderLine()
+        {
+            int left = Console.CursorLeft; // to restore cursorposition left
+            
+            for (int c = 0; c < Height - 2; c++) // R
+            {
+                Console.Write('│');
+                Console.CursorLeft = left;
+                Console.CursorTop++;
+            }
+        }
+
+        private void DisplayTopBorder()
+        {
+            Console.Write('┌');
+            DisplayHorizontalBorderLine();
+            Console.Write('┐');
+        }
+
+        private void DisplayBottomBorder()
+        {
+            Console.Write('└');
+            DisplayHorizontalBorderLine();
+            Console.Write('┘');
+        }
+
         public void Display()
         {
             Console.CursorTop = VerticalPos;
             Console.CursorLeft = HorizontalPos;
             DisplayTopBorder();
+
+            Console.CursorTop = VerticalPos + 1;
+            Console.CursorLeft = HorizontalPos;
+            DisplayVerticalBorderLine();
+
+            Console.CursorTop = VerticalPos + 1;
+            Console.CursorLeft = HorizontalPos + Width - 1;
+            DisplayVerticalBorderLine();
 
             Console.CursorTop = VerticalPos + Height - 1;
             Console.CursorLeft = HorizontalPos;

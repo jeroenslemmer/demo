@@ -27,14 +27,30 @@ namespace Demo
                     switch (input.Key)
                     {
                         case ConsoleKey.Tab:
-                            int index = rectangles.IndexOf(selectedRectangle) + 1;
-                            if (index < rectangles.Count)
+                            if (input.Modifiers == ConsoleModifiers.Shift)
                             {
-                                selectedRectangle = rectangles[index];
+                                int index = rectangles.IndexOf(selectedRectangle) - 1 ;
+                                if (index >= 0)
+                                {
+                                    selectedRectangle = rectangles[index];
+                                }
+                                else
+                                {
+                                    selectedRectangle = rectangles[rectangles.Count - 1];
+                                }
                             }
                             else
                             {
-                                selectedRectangle = rectangles[0];
+
+                                int index = rectangles.IndexOf(selectedRectangle) + 1;
+                                if (index < rectangles.Count)
+                                {
+                                    selectedRectangle = rectangles[index];
+                                }
+                                else
+                                {
+                                    selectedRectangle = rectangles[0];
+                                }
                             }
                             break;
                         case ConsoleKey.Spacebar:
@@ -52,13 +68,34 @@ namespace Demo
                             }
                             break;
                         case ConsoleKey.LeftArrow:
-                            selectedRectangle.MoveLeft();
+                            if (input.Modifiers == ConsoleModifiers.Control)
+                            {
+                                selectedRectangle.ShrinkWidth();
+                            }
+                            else
+                            {
+                                selectedRectangle.MoveLeft();
+                            }
                             break;
                         case ConsoleKey.DownArrow:
-                            selectedRectangle.MoveDown();
+                            if (input.Modifiers == ConsoleModifiers.Control)
+                            {
+                                selectedRectangle.GrowHeight();
+                            }
+                            else
+                            {
+                                selectedRectangle.MoveDown();
+                            }
                             break;
                         case ConsoleKey.UpArrow:
-                            selectedRectangle.MoveUp();
+                            if (input.Modifiers == ConsoleModifiers.Control)
+                            {
+                                selectedRectangle.ShrinkHeight();
+                            }
+                            else
+                            {
+                                selectedRectangle.MoveUp();
+                            }
                             break;
                     }
                 }
