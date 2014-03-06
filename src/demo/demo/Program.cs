@@ -12,9 +12,10 @@ namespace demo
         {
             const ConsoleKey ExitKey = ConsoleKey.Q;
             ConsoleKeyInfo input;
-            Square square = new Square();
+            Square square = new Square(1);
             do
             {
+                Console.Clear();
                 square.Display();
                 input = Console.ReadKey();
                 if (input.Key != ExitKey)
@@ -22,7 +23,7 @@ namespace demo
                     switch (input.Key)
                     {
                         case ConsoleKey.RightArrow:
-                            Console.WriteLine("right");
+                            square.HorizontalPos++;
                             break;
 
 

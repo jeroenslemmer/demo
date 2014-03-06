@@ -8,21 +8,45 @@ namespace demo
 {
     class Square
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public int HorizontalPos { get; set; }
         public int VerticalPos { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public ConsoleColor Color { get; set; }
 
-        public void Display()
+        public Square(int id)
+        {
+            Id = id;
+            HorizontalPos = 0;
+            VerticalPos = 0;
+            Width = 2;
+            Height = 2;
+        }
+
+        private void DisplayTopBorder()
         {
             Console.Write('┌');
             Console.Write('┐');
-            Console.WriteLine();
+        }
+
+        private void DisplayBottomBorder()
+        {
             Console.Write('└');
             Console.Write('┘');
-            Console.WriteLine();
+        }
+
+
+        public void Display()
+        {
+            Console.CursorTop = VerticalPos;
+            Console.CursorLeft = HorizontalPos;
+            DisplayTopBorder();
+
+            Console.CursorTop = VerticalPos + Height - 1;
+            Console.CursorLeft = HorizontalPos;
+            DisplayBottomBorder();
+
         }
     }
 
