@@ -11,7 +11,6 @@ namespace Demo
         static void Main(string[] args)
         {
             const ConsoleKey exitKey = ConsoleKey.Q;
-
             Console.CursorVisible = false;
             ConsoleKeyInfo input;
             Rectangle selectedRectangle;
@@ -21,7 +20,7 @@ namespace Demo
             do
             {
                 Console.Clear();
-                DisplayRectangles(rectangles);
+                DisplayRectangles(rectangles, selectedRectangle);
                 input = Console.ReadKey();
                 if (input.Key != exitKey)
                 {
@@ -67,10 +66,20 @@ namespace Demo
 
             } while (input.Key != exitKey);
         }
-        public static void DisplayRectangles(List<Rectangle> rectangles)
+        public static void DisplayRectangles(List<Rectangle> rectangles, Rectangle selectedRectangle)
         {
             foreach(var rectangle in rectangles)
             {
+                if (rectangle == selectedRectangle)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Gray; 
+                }
+                
+                
                 rectangle.Display();
             }
 
